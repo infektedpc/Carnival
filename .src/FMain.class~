@@ -1,0 +1,158 @@
+' Gambas class file
+
+Public OpenedFilePath As String = ""
+Public OG_Text As String = ""
+Public Text_Changed As Boolean = False
+Public MSG_SaveChanges As String = ""
+
+Public Sub _new()
+  
+End
+
+Public Sub Form_Open()
+  
+  FMain.Center
+  
+End
+
+Public Sub Button_TextToSpeech_Click()
+  Dim Results As String
+  Shell ("echo " & Chr(34) & TextArea1.Text & Chr(34) & " | festival --tts") To Results
+  'TextArea1.Clear
+  Print Results
+  
+End
+
+Public Sub Help_About_Click()
+
+  
+
+End
+
+Public Sub Edit_Undo_Click()
+
+  TextArea1.Undo
+
+End
+
+Public Sub Edit_Redo_Click()
+
+  TextArea1.Redo
+
+End
+
+Public Sub Edit_Cut_Click()
+
+  TextArea1.Cut
+
+End
+
+Public Sub Edit_Copy_Click()
+
+  TextArea1.Copy
+
+End
+
+Public Sub File_Open_Click()
+
+  Dialog.Title = "Open File"
+  Dialog.Path = "/home/" & User.Name
+  'Dialog.ShowHidden = True
+  If Dialog.OpenFile() Then Return
+  OpenedFilePath = Dialog.Path
+  TextArea1.Text = File.Load(Dialog.Path)
+  OG_Text = File.Load(Dialog.Path)
+  
+End
+Public Sub Edit_Paste_Click()
+
+  TextArea1.Paste
+
+End
+
+Public Sub File_New_Click()
+
+'Check if OpenedFilePath is not empty
+
+'Check for Changes
+
+'Ask user if what to save if Changes
+
+  TextArea1.Clear
+
+End
+
+Public Sub File_Save_Click()
+
+  'Check if OpenedFilePath is not empty
+  If Not OpenedFilePath = "" Then
+  File.Save(OpenedFilePath, TextArea1.Text)
+  Endif
+  
+End
+
+Public Sub Menu_Save_As_Click()
+
+  Dialog.Title = "Save File As"
+  Dialog.Path = "/home/" & User.Name
+  'Dialog.ShowHidden = True
+  If Dialog.SaveFile() Then Return
+  'Save File
+  File.Save(Dialog.Path, TextArea1.Text)
+  
+End
+
+Public Sub File_Quit_Click()
+
+'Check for Changes
+
+'Ask user if what to save if Changes
+
+Dim Answered_Question As Integer = Message.Question(MSG_SaveChanges, "Yes", "No", "Cancel")
+If Answered_Question = 1 Then
+ 'Save Changes
+
+ Else If Answered_Question = 2
+ 'Quit
+ FMain.Close
+ Else
+ 'Cancel - Do nothing
+ Endif
+
+End
+
+Public Sub TextArea1_Change()
+
+'Message(OG_Text)
+'OG_Text = TextArea1.Text
+
+If Not OG_Text = OG_Text Then
+  'If Not FMain.Title = "Carnival Text To Speech *" Then
+  FMain.Title = "Carnival Text To Speech *"
+ Text_Changed = True
+   'End If
+  Else
+    FMain.Title = "Carnival Text To Speech"
+    Text_Changed = False
+Endif
+
+End
+
+
+Public Sub TextArea1_KeyPress()
+
+  
+
+End
+Public Sub Form_Close()
+
+  
+
+End
+
+Public Sub TrayIcon1_Menu()
+
+      TrayMenu.Popup()
+      
+
+End

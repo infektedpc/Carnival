@@ -1,0 +1,51 @@
+# Gambas Form File 3.0
+
+{ Form Form
+  MoveScaled(0,0,50,35)
+  Text = ("Carnival Text To Speech")
+  Icon = Picture["Carnival128x.png"]
+  Resizable = False
+  { File_File Menu
+    Text = ("File")
+    { File_Open Menu
+      Text = ("Open")
+    }
+    { File_Quit Menu
+      Text = ("Quit")
+    }
+  }
+  { Help_Help Menu
+    Text = ("Help")
+    { Help_About Menu
+      Text = ("About")
+    }
+  }
+  { TrayMenu Menu
+    Text = ("TrayMenu")
+    Visible = False
+  }
+  { TextArea1 TextArea
+    MoveScaled(1,1,48,23)
+    Expand = True
+    Wrap = True
+  }
+  { Button1 Button
+    MoveScaled(1,25,17,5)
+    Text = ("Clipboard")
+    Picture = Picture["icon:/22/paste"]
+  }
+  { Button_TextToSpeech Button
+    MoveScaled(32,25,17,5)
+    Text = ("Speak It!")
+    Picture = Picture["icon:/22/volume"]
+  }
+  { TrayIcon1 #TrayIcon
+    #MoveScaled(42,31)
+    Picture = Picture["Carnival128x.png"]
+  }
+  { Button2 Button
+    MoveScaled(20,25,10,5)
+    Text = ("Clear")
+    Picture = Picture["icon:/22/clear"]
+  }
+}
